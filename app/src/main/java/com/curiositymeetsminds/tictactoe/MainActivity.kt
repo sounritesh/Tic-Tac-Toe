@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private val tag = "MainActivity"
-    var grid = mutableListOf<String>("", "", "", "", "", "", "", "", "", "")
+    var grid = mutableListOf<String>("r", "", "", "", "", "", "", "", "", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         val listener = View.OnClickListener {
             val v = it as Button
             try {
-                if (checkWin(grid)) {
+                if (checkWin(grid) && grid.contains("")) {
                     if (v.text.isEmpty()) {
                         if (turn) {
                             v.text = "X"
@@ -73,7 +73,10 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 } else {
-                    if (turn) {
+                    if (!grid.contains("")) {
+                        Toast.makeText(this,"Match Draw",Toast.LENGTH_LONG).show()
+                    }
+                    else if (turn) {
                         Toast.makeText(this,"Player 2 WON",Toast.LENGTH_LONG).show()
                     } else {
                         Toast.makeText(this,"Player 1 WON",Toast.LENGTH_LONG).show()
