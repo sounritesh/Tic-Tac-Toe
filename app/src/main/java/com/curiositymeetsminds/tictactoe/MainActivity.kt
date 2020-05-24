@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -11,12 +12,30 @@ class MainActivity : AppCompatActivity() {
 
     private val tag = "MainActivity"
     var grid = mutableListOf<String>("", "", "", "", "", "", "", "", "", "")
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         var turn = true
+
+        restart.setOnClickListener {
+            turn = true
+            restart.visibility = View.INVISIBLE
+            for (i in 1..9) {
+                grid[i] = ""
+            }
+            button1.text = ""
+            button2.text = ""
+            button3.text = ""
+            button4.text = ""
+            button5.text = ""
+            button6.text = ""
+            button7.text = ""
+            button8.text = ""
+            button9.text = ""
+        }
+        restart.visibility = View.INVISIBLE
 
         val listener = View.OnClickListener {
             val v = it as Button
@@ -52,10 +71,14 @@ class MainActivity : AppCompatActivity() {
                             }
                             turn = true
                         }
-                    } else {
-                        textView.text = "WON!!!!!!!!!!!!!"
                     }
-
+                } else {
+                    if (turn) {
+                        Toast.makeText(this,"Player 2 WON",Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(this,"Player 1 WON",Toast.LENGTH_LONG).show()
+                    }
+                    restart.visibility = View.VISIBLE
                 }
             } catch (e: Exception) {
                 Log.e(tag, " Error!!")
