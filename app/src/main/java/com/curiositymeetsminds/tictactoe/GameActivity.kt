@@ -46,7 +46,7 @@ class GameActivity : AppCompatActivity() {
                             v.text = "X"
                             when(v.id) {
                                 R.id.button1 -> grid[1] = "X"
-                                R.id.tournament -> grid[2] = "X"
+                                R.id.button2 -> grid[2] = "X"
                                 R.id.button3 -> grid[3] = "X"
                                 R.id.button4 -> grid[4] = "X"
                                 R.id.button5 -> grid[5] = "X"
@@ -60,7 +60,7 @@ class GameActivity : AppCompatActivity() {
                             v.text = "O"
                             when(v.id) {
                                 R.id.button1 -> grid[1] = "O"
-                                R.id.tournament -> grid[2] = "O"
+                                R.id.button2 -> grid[2] = "O"
                                 R.id.button3 -> grid[3] = "O"
                                 R.id.button4 -> grid[4] = "O"
                                 R.id.button5 -> grid[5] = "O"
