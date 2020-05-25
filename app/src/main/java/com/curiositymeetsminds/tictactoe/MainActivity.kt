@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         single.setOnClickListener(this)
         play.setOnClickListener {
             numberOfGames = editText.text.toString().toInt()
-            startActivity(Intent(this,TournamentActivity(numberOfGames)::class.java))
+            startActivity(Intent(this,TournamentActivity::class.java))
         }
 
         editText.visibility = View.INVISIBLE
