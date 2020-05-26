@@ -80,19 +80,19 @@ class TournamentActivity: AppCompatActivity() {
                     }
                 } else {
                     if (!grid.contains("")) {
-                        if (numberOfGames < 6) {
+                        if (numberOfGames < 5) {
                             Toast.makeText(this, "Match Draw", Toast.LENGTH_LONG).show()
                             numberOfGames += 1
                             restart()
                         } else {
                             when {
-                                scoreOne < scoreTwo -> Toast.makeText(this, "Player 2 won the tournament.", Toast.LENGTH_SHORT)
-                                scoreOne > scoreTwo -> Toast.makeText(this, "Player 1 won the tournament.", Toast.LENGTH_SHORT)
-                                else -> Toast.makeText(this, "Tournament draw.", Toast.LENGTH_SHORT)
+                                scoreOne < scoreTwo -> Toast.makeText(this, "Player 2 won the tournament.", Toast.LENGTH_SHORT).show()
+                                scoreOne > scoreTwo -> Toast.makeText(this, "Player 1 won the tournament.", Toast.LENGTH_SHORT).show()
+                                else -> Toast.makeText(this, "Tournament draw.", Toast.LENGTH_SHORT).show()
                             }
                         }
                     } else if (turn) {
-                        if (numberOfGames < 6) {
+                        if (numberOfGames < 5) {
                             Toast.makeText(this, "Player 2 WON", Toast.LENGTH_LONG).show()
                             scoreTwo += 1
                             playerTwo.text = scoreTwo.toString()
@@ -100,13 +100,13 @@ class TournamentActivity: AppCompatActivity() {
                             restart()
                         } else {
                             when {
-                                scoreOne < scoreTwo -> Toast.makeText(this, "Player 2 won the tournament.", Toast.LENGTH_SHORT)
-                                scoreOne > scoreTwo -> Toast.makeText(this, "Player 1 won the tournament.", Toast.LENGTH_SHORT)
-                                else -> Toast.makeText(this, "Tournament draw.", Toast.LENGTH_SHORT)
+                                scoreOne < scoreTwo -> Toast.makeText(this, "Player 2 won the tournament.", Toast.LENGTH_SHORT).show()
+                                scoreOne > scoreTwo -> Toast.makeText(this, "Player 1 won the tournament.", Toast.LENGTH_SHORT).show()
+                                else -> Toast.makeText(this, "Tournament draw.", Toast.LENGTH_SHORT).show()
                             }
                         }
                     } else {
-                        if (numberOfGames < 6) {
+                        if (numberOfGames < 5) {
                             Toast.makeText(this, "Player 1 WON", Toast.LENGTH_LONG).show()
                             scoreOne += 1
                             playerOne.text = scoreOne.toString()
@@ -114,9 +114,9 @@ class TournamentActivity: AppCompatActivity() {
                             restart()
                         } else {
                             when {
-                                scoreOne < scoreTwo -> Toast.makeText(this, "Player 2 won the tournament.", Toast.LENGTH_SHORT)
-                                scoreOne > scoreTwo -> Toast.makeText(this, "Player 1 won the tournament.", Toast.LENGTH_SHORT)
-                                else -> Toast.makeText(this, "Tournament draw.", Toast.LENGTH_SHORT)
+                                scoreOne < scoreTwo -> Toast.makeText(this, "Player 2 won the tournament.", Toast.LENGTH_SHORT).show()
+                                scoreOne > scoreTwo -> Toast.makeText(this, "Player 1 won the tournament.", Toast.LENGTH_SHORT).show()
+                                else -> Toast.makeText(this, "Tournament draw.", Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
