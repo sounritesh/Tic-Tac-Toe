@@ -20,11 +20,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             Toast.makeText(this, "Enter number of games.", Toast.LENGTH_LONG).show()
         }
 
-        var numberOfGames: Int
+        var numberOfGames = 3
         single.setOnClickListener(this)
         play.setOnClickListener {
-            numberOfGames = editText.text.toString().toInt()
-            startActivity(Intent(this,TournamentActivity::class.java))
+            if (editText.text.isNotEmpty()) {
+                numberOfGames = editText.text.toString().toInt()
+            }
+            val intent = Intent(this, TournamentActivity::class.java)
+            intent.putExtra("key", numberOfGames)
+            startActivity(intent)
         }
 
         editText.visibility = View.INVISIBLE

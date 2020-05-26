@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_game.*
 class GameActivity : AppCompatActivity() {
 
     private val tag = "MainActivity"
-    var grid = mutableListOf<String>("r", "", "", "", "", "", "", "", "", "")
+    private var grid = mutableListOf("r", "", "", "", "", "", "", "", "", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +44,7 @@ class GameActivity : AppCompatActivity() {
                     if (v.text.isEmpty()) {
                         if (turn) {
                             v.text = "X"
-                            when(v.id) {
+                            when (v.id) {
                                 R.id.button1 -> grid[1] = "X"
                                 R.id.button2 -> grid[2] = "X"
                                 R.id.button3 -> grid[3] = "X"
@@ -58,7 +58,7 @@ class GameActivity : AppCompatActivity() {
                             turn = false
                         } else {
                             v.text = "O"
-                            when(v.id) {
+                            when (v.id) {
                                 R.id.button1 -> grid[1] = "O"
                                 R.id.button2 -> grid[2] = "O"
                                 R.id.button3 -> grid[3] = "O"
@@ -74,12 +74,11 @@ class GameActivity : AppCompatActivity() {
                     }
                 } else {
                     if (!grid.contains("")) {
-                        Toast.makeText(this,"Match Draw",Toast.LENGTH_LONG).show()
-                    }
-                    else if (turn) {
-                        Toast.makeText(this,"Player 2 WON",Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Match Draw", Toast.LENGTH_SHORT).show()
+                    } else if (turn) {
+                        Toast.makeText(this, "Player 2 WON", Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(this,"Player 1 WON",Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Player 1 WON", Toast.LENGTH_SHORT).show()
                     }
                     restart.visibility = View.VISIBLE
                 }
