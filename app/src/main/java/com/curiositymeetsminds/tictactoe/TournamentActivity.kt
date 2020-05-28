@@ -18,6 +18,7 @@ class TournamentActivity: AppCompatActivity() {
     private var numberOfGames = 0
     private var scoreOne = 0
     private var scoreTwo = 0
+    private var tournamentWin = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,80 +47,77 @@ class TournamentActivity: AppCompatActivity() {
         val listener = View.OnClickListener {
             val v = it as Button
             try {
-                if (checkWin(grid) && grid.contains("")) {
-                    if (v.text.isEmpty()) {
-                        if (turn) {
-                            v.text = "X"
-                            when (v.id) {
-                                R.id.btn1 -> grid[1] = "X"
-                                R.id.btn2 -> grid[2] = "X"
-                                R.id.btn3 -> grid[3] = "X"
-                                R.id.btn4 -> grid[4] = "X"
-                                R.id.btn5 -> grid[5] = "X"
-                                R.id.btn6 -> grid[6] = "X"
-                                R.id.btn7 -> grid[7] = "X"
-                                R.id.btn8 -> grid[8] = "X"
-                                R.id.btn9 -> grid[9] = "X"
-                            }
-                            turn = false
-                        } else {
-                            v.text = "O"
-                            when (v.id) {
-                                R.id.btn1 -> grid[1] = "O"
-                                R.id.btn2 -> grid[2] = "O"
-                                R.id.btn3 -> grid[3] = "O"
-                                R.id.btn4 -> grid[4] = "O"
-                                R.id.btn5 -> grid[5] = "O"
-                                R.id.btn6 -> grid[6] = "O"
-                                R.id.btn7 -> grid[7] = "O"
-                                R.id.btn8 -> grid[8] = "O"
-                                R.id.btn9 -> grid[9] = "O"
-                            }
-                            turn = true
-                        }
-                    }
-                } else {
-                    if (!grid.contains("")) {
-                        if (numberOfGames < 5) {
-                            Toast.makeText(this, "Match Draw", Toast.LENGTH_LONG).show()
-                            numberOfGames += 1
-                            restart()
-                        } else {
-                            when {
-                                scoreOne < scoreTwo -> Toast.makeText(this, "Player 2 won the tournament.", Toast.LENGTH_SHORT).show()
-                                scoreOne > scoreTwo -> Toast.makeText(this, "Player 1 won the tournament.", Toast.LENGTH_SHORT).show()
-                                else -> Toast.makeText(this, "Tournament draw.", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    } else if (turn) {
-                        if (numberOfGames < 5) {
-                            Toast.makeText(this, "Player 2 WON", Toast.LENGTH_LONG).show()
-                            scoreTwo += 1
-                            playerTwo.text = scoreTwo.toString()
-                            numberOfGames += 1
-                            restart()
-                        } else {
-                            when {
-                                scoreOne < scoreTwo -> Toast.makeText(this, "Player 2 won the tournament.", Toast.LENGTH_SHORT).show()
-                                scoreOne > scoreTwo -> Toast.makeText(this, "Player 1 won the tournament.", Toast.LENGTH_SHORT).show()
-                                else -> Toast.makeText(this, "Tournament draw.", Toast.LENGTH_SHORT).show()
+                if (!tournamentWin) {
+                    if (checkWin(grid) && grid.contains("")) {
+                        if (v.text.isEmpty()) {
+                            if (turn) {
+                                v.text = "X"
+                                when (v.id) {
+                                    R.id.btn1 -> grid[1] = "X"
+                                    R.id.btn2 -> grid[2] = "X"
+                                    R.id.btn3 -> grid[3] = "X"
+                                    R.id.btn4 -> grid[4] = "X"
+                                    R.id.btn5 -> grid[5] = "X"
+                                    R.id.btn6 -> grid[6] = "X"
+                                    R.id.btn7 -> grid[7] = "X"
+                                    R.id.btn8 -> grid[8] = "X"
+                                    R.id.btn9 -> grid[9] = "X"
+                                }
+                                turn = false
+                            } else {
+                                v.text = "O"
+                                when (v.id) {
+                                    R.id.btn1 -> grid[1] = "O"
+                                    R.id.btn2 -> grid[2] = "O"
+                                    R.id.btn3 -> grid[3] = "O"
+                                    R.id.btn4 -> grid[4] = "O"
+                                    R.id.btn5 -> grid[5] = "O"
+                                    R.id.btn6 -> grid[6] = "O"
+                                    R.id.btn7 -> grid[7] = "O"
+                                    R.id.btn8 -> grid[8] = "O"
+                                    R.id.btn9 -> grid[9] = "O"
+                                }
+                                turn = true
                             }
                         }
                     } else {
-                        if (numberOfGames < 5) {
-                            Toast.makeText(this, "Player 1 WON", Toast.LENGTH_LONG).show()
-                            scoreOne += 1
-                            playerOne.text = scoreOne.toString()
-                            numberOfGames += 1
-                            restart()
+                        if (!grid.contains("")) {
+                            if (numberOfGames < 5) {
+                                Toast.makeText(this, "Match Draw", Toast.LENGTH_LONG).show()
+                                numberOfGames += 1
+                                restart()
+                            } else {
+                                tournamentWin = true
+                            }
+                        } else if (turn) {
+                            if (numberOfGames < 5) {
+                                Toast.makeText(this, "Player 2 WON", Toast.LENGTH_LONG).show()
+                                scoreTwo += 1
+                                playerTwo.text = scoreTwo.toString()
+                                numberOfGames += 1
+                                restart()
+                            } else {
+                                tournamentWin = true
+                            }
                         } else {
-                            when {
-                                scoreOne < scoreTwo -> Toast.makeText(this, "Player 2 won the tournament.", Toast.LENGTH_SHORT).show()
-                                scoreOne > scoreTwo -> Toast.makeText(this, "Player 1 won the tournament.", Toast.LENGTH_SHORT).show()
-                                else -> Toast.makeText(this, "Tournament draw.", Toast.LENGTH_SHORT).show()
+                            if (numberOfGames < 5) {
+                                Toast.makeText(this, "Player 1 WON", Toast.LENGTH_LONG).show()
+                                scoreOne += 1
+                                playerOne.text = scoreOne.toString()
+                                numberOfGames += 1
+                                restart()
+                            } else {
+                                tournamentWin = true
                             }
                         }
                     }
+                } else {
+                    when {
+                        scoreOne < scoreTwo -> Toast.makeText(this, "Player 2 won the tournament.", Toast.LENGTH_SHORT).show()
+                        scoreOne > scoreTwo -> Toast.makeText(this, "Player 1 won the tournament.", Toast.LENGTH_SHORT).show()
+                        else -> Toast.makeText(this, "Tournament draw.", Toast.LENGTH_SHORT).show()
+                    }
+
                 }
             } catch (e: Exception) {
                 Log.e(tag, " Error!!")
